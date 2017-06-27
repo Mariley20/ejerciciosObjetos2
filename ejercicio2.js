@@ -1,34 +1,38 @@
-//Ejercicio 2: Te dice You're awesome si eres mujer mayor de 18 y una Web Developer o Estudiante Laboratoria
+
+var assert = require('assert');
+
 function ejercicio2 (nombre, edad, ocupacion, genero){
   this.nombre = nombre;
   this.edad = edad;
-  this.ocupacion = ocupacion;
-  this.genero = genero;
-  this.mensaje = function () {
-    if(this.genero.toLowerCase() == 'femenino' && this.edad >= 18 && (this.ocupacion.toLowerCase() == 'web developer' || this.ocupacion.toLowerCase() == 'estudiante laboratoria')){
-
-//convertimos de mayusculas a minusculas
-      return "You're awesome";
+  this.ocupacion = ocupacion.toLowerCase();
+  this.genero = genero.toLowerCase();
+  this.superCode = function () {
+    var result;
+    if(this.genero == 'femenino' && this.edad >= 18 && (this.ocupacion == 'web developer' || this.ocupacion == 'estudiante laboratoria')){
+      //convertimos de mayusculas a minusculas
+      result = "You're awesome";
     } else {
-      return 'Upsii';
+      result = 'Upsii';
     }
+    return result;
   }
 }
 
-describe ('Ejercicio 2', function () {
-  it ('Test ejercicio2("Tamara", 22, "Estudiante Laboratoria", "Femenino") ', function () {
-    assert.equal("You're awesome", new ejercicio2("Tamara", 22, "Estudiante Laboratoria", "Femenino").mensaje());
+describe ('Prueba 1', function () {
+  it ('ejercicio2-1 ', function () {
+    var res = new ejercicio2("Tamara", 22, "Estudiante Laboratoria", "Femenino");
+    assert.equal("You're awesome",res.superCode() );
   });
-  it ('Test ejercicio2("Jorge", 22, "Estudiante Laboratoria", "Masculino") ', function () {
-    assert.equal('Upsii', new ejercicio2("Jorge", 22, "Estudiante Laboratoria", "Maculino").mensaje());
+  it ('ejercicio2-2 ', function () {
+    var res1 = new ejercicio2("Pedro Luis", 22, "Estudiante Laboratoria", "Masculino")
+    assert.equal('Upsii', res1.superCode());
   });
-  it ('Test ejercicio2("Maria", 17, "Estudiante Laboratoria", "Femenino") ', function () {
-    assert.equal('Upsii', new ejercicio2("Maria", 17, "Estudiante Laboratoria", "Femenino").mensaje());
+  it ('ejercicio2-3', function () {
+    var res2 = new ejercicio2("Maria", 17, "web Developer", "Femenino");
+    assert.equal('Upsii', res2.superCode());
   });
-  it ('Test ejercicio2("Rosa", 30, "web Developer", "femenino") ', function () {
-    assert.equal("You're awesome", new ejercicio2("Rosa", 30, "web Developer", "femenino").mensaje());
-  });
-  it ('Test ejercicio2("Rosangela", 25, "asistente", "femenino") ', function () {
-    assert.equal('Upsii', new ejercicio2("Rosangela", 25, "asistente", "femenino").mensaje());
+  it ('ejercicio2-4', function () {
+    var res3 = new ejercicio2("Rosa", 30, "web Developer", "femenino");
+    assert.equal("You're awesome", res3.superCode());
   });
 });

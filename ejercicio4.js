@@ -1,5 +1,5 @@
 
-//Ejercicio 4: crea una ficha con tu nombre, apellido, edad y pais
+
 function ejercicio4 (nombre, apellido, edad, genero, ciudad, pais){
   this.nombre = nombre;
   this.apellido = apellido;
@@ -11,8 +11,14 @@ function ejercicio4 (nombre, apellido, edad, genero, ciudad, pais){
     return 'Nombre: ' + this.nombre + ' ' + this.apellido + '\n' + 'Edad: ' + edad + '\n' + 'Pais: ' + this.pais;
   }
 }
-describe ('Ejercicio 4', function () {
-  it ('Test ejercicio4 (Blanca, Perez, 19, Femenino, Santiago, Chile) ', function () {
-    assert.equal('Nombre: Blanca Perez\nEdad: 19\nPais: Chile', new ejercicio4('Blanca', 'Perez', 19, 'Femenino', 'Santiago', 'Chile').ficha());
+var assert = require('assert');
+describe ('Prueba 1', function () {
+  it ('ejercicio4 1', function () {
+    var res = new ejercicio4('Blanca', 'Perez', 19, 'Femenino', 'Santiago', 'Chile')
+    assert.equal('Nombre: Blanca Perez\nEdad: 19\nPais: Chile', res.ficha());
+  });
+  it ('ejercicio4 2', function () {
+    var res1 = new ejercicio4('Mariley', 'Condori', 19, 'Femenino', 'Arequipa', 'Peru')
+    assert.equal('Nombre: Mariley Condori\nEdad: 19\nPais: Peru', res1.ficha());
   });
 });
